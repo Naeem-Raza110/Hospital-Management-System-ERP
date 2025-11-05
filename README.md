@@ -6,7 +6,7 @@ This project is built with:
 - **Vite**  
 - **TypeScript**  
 - **React**  
-- **Shadcn-UI**  
+- **Shadcn-UI**   
 - **Tailwind CSS**  
 
 > All **shadcn/ui components** are available under `@/components/ui`.
