@@ -9,7 +9,9 @@ interface LoginProps {
 const Button = ({ children, ...props }: any) => (
   <button
     {...props}
-    className={`w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded transition-all ${props.className || ""}`}
+    className={`w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded transition-all ${
+      props.className || ""
+    }`}
   >
     {children}
   </button>
@@ -18,7 +20,9 @@ const Button = ({ children, ...props }: any) => (
 const Input = (props: any) => (
   <input
     {...props}
-    className={`border border-gray-300 p-2 rounded w-full focus:ring-2 focus:ring-blue-500 outline-none ${props.className || ""}`}
+    className={`border border-gray-300 p-2 rounded w-full focus:ring-2 focus:ring-blue-500 outline-none ${
+      props.className || ""
+    }`}
   />
 );
 
@@ -28,19 +32,37 @@ const Label = ({ htmlFor, children }: any) => (
   </label>
 );
 
-const Card = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
-  <div className={`bg-white rounded-xl p-6 shadow-lg ${className}`}>{children}</div>
+const Card = ({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => (
+  <div className={`bg-white rounded-xl p-6 shadow-lg ${className}`}>
+    {children}
+  </div>
 );
-const CardHeader = ({ children }: { children: React.ReactNode }) => <div className="mb-4">{children}</div>;
-const CardTitle = ({ children }: { children: React.ReactNode }) => <h2 className="text-xl font-semibold">{children}</h2>;
+const CardHeader = ({ children }: { children: React.ReactNode }) => (
+  <div className="mb-4">{children}</div>
+);
+const CardTitle = ({ children }: { children: React.ReactNode }) => (
+  <h2 className="text-xl font-semibold">{children}</h2>
+);
 const CardDescription = ({ children }: { children: React.ReactNode }) => (
   <p className="text-sm text-gray-500">{children}</p>
 );
-const CardContent = ({ children }: { children: React.ReactNode }) => <div>{children}</div>;
+const CardContent = ({ children }: { children: React.ReactNode }) => (
+  <div>{children}</div>
+);
 
-const Tabs = ({ children }: { children: React.ReactNode }) => <div>{children}</div>;
+const Tabs = ({ children }: { children: React.ReactNode }) => (
+  <div>{children}</div>
+);
 const TabsList = ({ children }: { children: React.ReactNode }) => (
-  <div className="grid grid-cols-2 mb-4 bg-gray-100 p-1 rounded">{children}</div>
+  <div className="grid grid-cols-2 mb-4 bg-gray-100 p-1 rounded">
+    {children}
+  </div>
 );
 const TabsTrigger = ({
   value,
@@ -55,13 +77,22 @@ const TabsTrigger = ({
 }) => (
   <button
     onClick={onClick}
-    className={`py-2 px-3 rounded ${selected ? "bg-blue-600 text-white" : "text-gray-600 hover:bg-blue-50"}`}
+    className={`py-2 px-3 rounded ${
+      selected ? "bg-blue-600 text-white" : "text-gray-600 hover:bg-blue-50"
+    }`}
   >
     {children}
   </button>
 );
-const TabsContent = ({ value, active, children }: { value: string; active: boolean; children: React.ReactNode }) =>
-  active ? <div>{children}</div> : null;
+const TabsContent = ({
+  value,
+  active,
+  children,
+}: {
+  value: string;
+  active: boolean;
+  children: React.ReactNode;
+}) => (active ? <div>{children}</div> : null);
 
 const Login = ({ onLogin }: LoginProps) => {
   const navigate = useNavigate();
@@ -78,7 +109,9 @@ const Login = ({ onLogin }: LoginProps) => {
     const token = localStorage.getItem("token");
     if (token) {
       axios
-        .get("http://localhost:5000/verify-token", { headers: { Authorization: `Bearer ${token}` } })
+        .get("http://localhost:5000/verify-token", {
+          headers: { Authorization: `Bearer ${token}` },
+        })
         .then(() => navigate("/dashboard"))
         .catch(() => localStorage.removeItem("token"));
     }
@@ -133,8 +166,12 @@ const Login = ({ onLogin }: LoginProps) => {
           <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-2xl mb-4 shadow-lg">
             <span className="text-white font-bold text-3xl">H+</span>
           </div>
-          <h1 className="text-3xl font-bold text-gray-900">Hospital Management khura</h1>
-          <p className="text-gray-600 mt-2">Login or create a new account to continue.</p>
+          <h1 className="text-3xl font-bold text-gray-900">
+            Hospital Management khura
+          </h1>
+          <p className="text-gray-600 mt-2">
+            Login or create a new account to continue.
+          </p>
         </div>
 
         <Card>
@@ -145,7 +182,11 @@ const Login = ({ onLogin }: LoginProps) => {
           <CardContent>
             <Tabs>
               <TabsList>
-                <TabsTrigger value="login" selected={activeTab === "login"} onClick={() => setActiveTab("login")}>
+                <TabsTrigger
+                  value="login"
+                  selected={activeTab === "login"}
+                  onClick={() => setActiveTab("login")}
+                >
                   Login
                 </TabsTrigger>
                 <TabsTrigger
@@ -181,7 +222,9 @@ const Login = ({ onLogin }: LoginProps) => {
                       required
                     />
                   </div>
-                  {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+                  {error && (
+                    <p className="text-red-500 text-sm text-center">{error}</p>
+                  )}
                   <Button type="submit" disabled={loading}>
                     {loading ? "Loading..." : "Login"}
                   </Button>
@@ -223,7 +266,9 @@ const Login = ({ onLogin }: LoginProps) => {
                       required
                     />
                   </div>
-                  {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+                  {error && (
+                    <p className="text-red-500 text-sm text-center">{error}</p>
+                  )}
                   <Button type="submit" disabled={loading}>
                     {loading ? "Loading..." : "Register"}
                   </Button>

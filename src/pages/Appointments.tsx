@@ -1,79 +1,79 @@
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { Calendar, Clock, User, Stethoscope } from 'lucide-react';
+} from "@/components/ui/select";
+import { Calendar, Clock, User, Stethoscope } from "lucide-react";
 
 const Appointments = () => {
-  const [selectedDate, setSelectedDate] = useState('2024-01-22');
+  const [selectedDate, setSelectedDate] = useState("2024-01-22");
 
   const appointments = [
     {
-      id: 'A001',
-      time: '09:00 AM',
-      patient: 'John Smith',
-      doctor: 'Dr. Michael Chen',
-      department: 'Cardiology',
-      status: 'Confirmed',
-      type: 'Check-up',
+      id: "A001",
+      time: "09:00 AM",
+      patient: "John Smith",
+      doctor: "Dr. Michael Chen",
+      department: "Cardiology",
+      status: "Confirmed",
+      type: "Check-up",
     },
     {
-      id: 'A002',
-      time: '10:30 AM',
-      patient: 'Sarah Johnson',
-      doctor: 'Dr. Emily Taylor',
-      department: 'Pediatrics',
-      status: 'Confirmed',
-      type: 'Consultation',
+      id: "A002",
+      time: "10:30 AM",
+      patient: "Sarah Johnson",
+      doctor: "Dr. Emily Taylor",
+      department: "Pediatrics",
+      status: "Confirmed",
+      type: "Consultation",
     },
     {
-      id: 'A003',
-      time: '11:00 AM',
-      patient: 'Mike Davis',
-      doctor: 'Dr. Sarah Williams',
-      department: 'Neurology',
-      status: 'Pending',
-      type: 'Follow-up',
+      id: "A003",
+      time: "11:00 AM",
+      patient: "Mike Davis",
+      doctor: "Dr. Sarah Williams",
+      department: "Neurology",
+      status: "Pending",
+      type: "Follow-up",
     },
     {
-      id: 'A004',
-      time: '02:00 PM',
-      patient: 'Emily Brown',
-      doctor: 'Dr. James Rodriguez',
-      department: 'Orthopedics',
-      status: 'Confirmed',
-      type: 'Surgery',
+      id: "A004",
+      time: "02:00 PM",
+      patient: "Emily Brown",
+      doctor: "Dr. James Rodriguez",
+      department: "Orthopedics",
+      status: "Confirmed",
+      type: "Surgery",
     },
     {
-      id: 'A005',
-      time: '03:30 PM',
-      patient: 'David Wilson',
-      doctor: 'Dr. Lisa Anderson',
-      department: 'Dermatology',
-      status: 'Cancelled',
-      type: 'Consultation',
+      id: "A005",
+      time: "03:30 PM",
+      patient: "David Wilson",
+      doctor: "Dr. Lisa Anderson",
+      department: "Dermatology",
+      status: "Cancelled",
+      type: "Consultation",
     },
   ];
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'Confirmed':
-        return 'bg-green-100 text-green-800';
-      case 'Pending':
-        return 'bg-yellow-100 text-yellow-800';
-      case 'Cancelled':
-        return 'bg-red-100 text-red-800';
+      case "Confirmed":
+        return "bg-green-100 text-green-800";
+      case "Pending":
+        return "bg-yellow-100 text-yellow-800";
+      case "Cancelled":
+        return "bg-red-100 text-red-800";
       default:
-        return 'bg-gray-100 text-gray-800';
+        return "bg-gray-100 text-gray-800";
     }
   };
 
@@ -81,8 +81,12 @@ const Appointments = () => {
     <div className="space-y-6 animate-in fade-in duration-500">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Appointment Scheduling</h1>
-        <p className="text-gray-600 mt-1">Book and manage patient appointments</p>
+        <h1 className="text-3xl font-bold text-gray-900">
+          Appointment Scheduling
+        </h1>
+        <p className="text-gray-600 mt-1">
+          Book and manage patient appointments
+        </p>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-3">
@@ -105,18 +109,33 @@ const Appointments = () => {
                     <SelectValue placeholder="Choose a doctor" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="d1">Dr. Michael Chen - Cardiology</SelectItem>
-                    <SelectItem value="d2">Dr. Sarah Williams - Neurology</SelectItem>
-                    <SelectItem value="d3">Dr. James Rodriguez - Orthopedics</SelectItem>
-                    <SelectItem value="d4">Dr. Emily Taylor - Pediatrics</SelectItem>
-                    <SelectItem value="d5">Dr. Lisa Anderson - Dermatology</SelectItem>
+                    <SelectItem value="d1">
+                      Dr. Michael Chen - Cardiology
+                    </SelectItem>
+                    <SelectItem value="d2">
+                      Dr. Sarah Williams - Neurology
+                    </SelectItem>
+                    <SelectItem value="d3">
+                      Dr. James Rodriguez - Orthopedics
+                    </SelectItem>
+                    <SelectItem value="d4">
+                      Dr. Emily Taylor - Pediatrics
+                    </SelectItem>
+                    <SelectItem value="d5">
+                      Dr. Lisa Anderson - Dermatology
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="date">Appointment Date</Label>
-                <Input id="date" type="date" value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)} />
+                <Input
+                  id="date"
+                  type="date"
+                  value={selectedDate}
+                  onChange={(e) => setSelectedDate(e.target.value)}
+                />
               </div>
 
               <div className="space-y-2">
@@ -204,7 +223,11 @@ const Appointments = () => {
                       <Button size="sm" variant="outline">
                         Reschedule
                       </Button>
-                      <Button size="sm" variant="outline" className="text-red-600 hover:text-red-700 hover:bg-red-50">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                      >
                         Cancel
                       </Button>
                     </div>
@@ -223,8 +246,11 @@ const Appointments = () => {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-7 gap-2">
-            {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
-              <div key={day} className="text-center font-semibold text-gray-600 py-2">
+            {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+              <div
+                key={day}
+                className="text-center font-semibold text-gray-600 py-2"
+              >
                 {day}
               </div>
             ))}
@@ -237,13 +263,19 @@ const Appointments = () => {
                   className={`aspect-square flex items-center justify-center rounded-lg border transition-all duration-200 ${
                     day > 0 && day <= 31
                       ? hasAppointment
-                        ? 'bg-blue-100 border-blue-300 hover:bg-blue-200 cursor-pointer'
-                        : 'border-gray-200 hover:border-blue-300 hover:bg-gray-50 cursor-pointer'
-                      : 'bg-gray-50 border-gray-100'
+                        ? "bg-blue-100 border-blue-300 hover:bg-blue-200 cursor-pointer"
+                        : "border-gray-200 hover:border-blue-300 hover:bg-gray-50 cursor-pointer"
+                      : "bg-gray-50 border-gray-100"
                   }`}
                 >
                   {day > 0 && day <= 31 && (
-                    <span className={`text-sm ${hasAppointment ? 'font-semibold text-blue-600' : 'text-gray-700'}`}>
+                    <span
+                      className={`text-sm ${
+                        hasAppointment
+                          ? "font-semibold text-blue-600"
+                          : "text-gray-700"
+                      }`}
+                    >
                       {day}
                     </span>
                   )}
