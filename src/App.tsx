@@ -2,7 +2,13 @@ import { useEffect, useState } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
 import axios from "axios";
 
 // Pages
@@ -93,7 +99,9 @@ const App = () => {
                 isAuthenticated ? (
                   <Navigate to="/dashboard" />
                 ) : (
-                  <LoginWrapper onAuthenticated={() => setIsAuthenticated(true)} />
+                  <LoginWrapper
+                    onAuthenticated={() => setIsAuthenticated(true)}
+                  />
                 )
               }
             />
@@ -112,7 +120,10 @@ const App = () => {
                       <Route path="/billing" element={<Billing />} />
                       <Route path="/reports" element={<Reports />} />
                       <Route path="/settings" element={<Settings />} />
-                      <Route path="*" element={<Navigate to="/dashboard" replace />} />
+                      <Route
+                        path="*"
+                        element={<Navigate to="/dashboard" replace />}
+                      />
                     </Routes>
                   </Layout>
                 ) : (
