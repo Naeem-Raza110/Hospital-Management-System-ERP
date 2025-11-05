@@ -25,7 +25,7 @@ import Layout from "./components/Layout";
 const queryClient = new QueryClient();
 
 // Login wrapper to handle redirect after login
-const LoginWrapper = ({ onAuthenticated }: { onAuthenticated: () => void }) => {
+const LoginWrapper = ({ onAuthenticated }) => {
   const navigate = useNavigate();
 
   const handleLogin = () => {

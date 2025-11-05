@@ -1,98 +1,22 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Eye, EyeOff } from "lucide-react"; // Make sure you have lucide-react installed
 
 interface LoginProps {
   onLogin?: () => void;
 }
-
-const Button = ({ children, ...props }: any) => (
-  <button
-    {...props}
-    className={`w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded transition-all ${
-      props.className || ""
-    }`}
-  >
-    {children}
-  </button>
-);
-
-const Input = (props: any) => (
-  <input
-    {...props}
-    className={`border border-gray-300 p-2 rounded w-full focus:ring-2 focus:ring-blue-500 outline-none ${
-      props.className || ""
-    }`}
-  />
-);
-
-const Label = ({ htmlFor, children }: any) => (
-  <label htmlFor={htmlFor} className="block text-sm font-medium mb-1">
-    {children}
-  </label>
-);
-
-const Card = ({
-  children,
-  className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => (
-  <div className={`bg-white rounded-xl p-6 shadow-lg ${className}`}>
-    {children}
-  </div>
-);
-const CardHeader = ({ children }: { children: React.ReactNode }) => (
-  <div className="mb-4">{children}</div>
-);
-const CardTitle = ({ children }: { children: React.ReactNode }) => (
-  <h2 className="text-xl font-semibold">{children}</h2>
-);
-const CardDescription = ({ children }: { children: React.ReactNode }) => (
-  <p className="text-sm text-gray-500">{children}</p>
-);
-const CardContent = ({ children }: { children: React.ReactNode }) => (
-  <div>{children}</div>
-);
-
-const Tabs = ({ children }: { children: React.ReactNode }) => (
-  <div>{children}</div>
-);
-const TabsList = ({ children }: { children: React.ReactNode }) => (
-  <div className="grid grid-cols-2 mb-4 bg-gray-100 p-1 rounded">
-    {children}
-  </div>
-);
-const TabsTrigger = ({
-  value,
-  selected,
-  onClick,
-  children,
-}: {
-  value: string;
-  selected: boolean;
-  onClick: () => void;
-  children: React.ReactNode;
-}) => (
-  <button
-    onClick={onClick}
-    className={`py-2 px-3 rounded ${
-      selected ? "bg-blue-600 text-white" : "text-gray-600 hover:bg-blue-50"
-    }`}
-  >
-    {children}
-  </button>
-);
-const TabsContent = ({
-  value,
-  active,
-  children,
-}: {
-  value: string;
-  active: boolean;
-  children: React.ReactNode;
-}) => (active ? <div>{children}</div> : null);
 
 const Login = ({ onLogin }: LoginProps) => {
   const navigate = useNavigate();
@@ -104,6 +28,10 @@ const Login = ({ onLogin }: LoginProps) => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState<"login" | "register">("login");
+
+  // Password visibility states
+  const [showLoginPassword, setShowLoginPassword] = useState(false);
+  const [showRegisterPassword, setShowRegisterPassword] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -127,9 +55,7 @@ const Login = ({ onLogin }: LoginProps) => {
         email: loginEmail,
         password: loginPassword,
       });
-
       localStorage.setItem("token", res.data.token);
-
       onLogin?.();
       navigate("/dashboard");
     } catch (err: any) {
@@ -162,44 +88,55 @@ const Login = ({ onLogin }: LoginProps) => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 p-4">
       <div className="w-full max-w-md">
-        <div className="text-center mb-8">
+        {/* Logo */}
+        <div className="text-center mb-8 animate-in fade-in slide-in-from-top duration-700">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-2xl mb-4 shadow-lg">
             <span className="text-white font-bold text-3xl">H+</span>
           </div>
           <h1 className="text-3xl font-bold text-gray-900">
-            Hospital Management khura
+            Hospital Management
           </h1>
           <p className="text-gray-600 mt-2">
-            Login or create a new account to continue.
+            Welcome back! Please login or register to continue.
           </p>
         </div>
 
-        <Card>
+        {/* Auth Card */}
+        <Card className="shadow-xl animate-in fade-in slide-in-from-bottom duration-700">
           <CardHeader>
             <CardTitle>Authentication</CardTitle>
-            <CardDescription>Access your hospital dashboard</CardDescription>
+            <CardDescription>Login or create a new account</CardDescription>
           </CardHeader>
           <CardContent>
-            <Tabs>
-              <TabsList>
+            <Tabs defaultValue={activeTab} className="w-full">
+              <TabsList className="grid w-full grid-cols-2 bg-gray-100 p-1 rounded">
                 <TabsTrigger
                   value="login"
-                  selected={activeTab === "login"}
                   onClick={() => setActiveTab("login")}
+                  className={
+                    activeTab === "login"
+                      ? "bg-blue-600 text-white"
+                      : "text-gray-600 hover:bg-blue-50"
+                  }
                 >
                   Login
                 </TabsTrigger>
                 <TabsTrigger
                   value="register"
-                  selected={activeTab === "register"}
                   onClick={() => setActiveTab("register")}
+                  className={
+                    activeTab === "register"
+                      ? "bg-blue-600 text-white"
+                      : "text-gray-600 hover:bg-blue-50"
+                  }
                 >
                   Register
                 </TabsTrigger>
               </TabsList>
 
-              <TabsContent value="login" active={activeTab === "login"}>
-                <form onSubmit={handleLogin} className="space-y-4">
+              {/* Login Tab */}
+              <TabsContent value="login">
+                <form onSubmit={handleLogin} className="space-y-4 mt-4">
                   <div className="space-y-2">
                     <Label htmlFor="login-email">Email</Label>
                     <Input
@@ -211,34 +148,50 @@ const Login = ({ onLogin }: LoginProps) => {
                       required
                     />
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-2 relative">
                     <Label htmlFor="login-password">Password</Label>
                     <Input
                       id="login-password"
-                      type="password"
+                      type={showLoginPassword ? "text" : "password"}
                       placeholder="••••••••"
                       value={loginPassword}
                       onChange={(e) => setLoginPassword(e.target.value)}
                       required
                     />
+                    <button
+                      type="button"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                      onClick={() => setShowLoginPassword(!showLoginPassword)}
+                    >
+                      {showLoginPassword ? (
+                        <EyeOff size={20} />
+                      ) : (
+                        <Eye size={20} />
+                      )}
+                    </button>
                   </div>
                   {error && (
                     <p className="text-red-500 text-sm text-center">{error}</p>
                   )}
-                  <Button type="submit" disabled={loading}>
+                  <Button
+                    type="submit"
+                    className="w-full bg-blue-600 hover:bg-blue-700"
+                    disabled={loading}
+                  >
                     {loading ? "Loading..." : "Login"}
                   </Button>
                 </form>
               </TabsContent>
 
-              <TabsContent value="register" active={activeTab === "register"}>
-                <form onSubmit={handleRegister} className="space-y-4">
+              {/* Register Tab */}
+              <TabsContent value="register">
+                <form onSubmit={handleRegister} className="space-y-4 mt-4">
                   <div className="space-y-2">
-                    <Label htmlFor="register-name">Name</Label>
+                    <Label htmlFor="register-name">Full Name</Label>
                     <Input
                       id="register-name"
                       type="text"
-                      placeholder="John Doe"
+                      placeholder="Dr. John Doe"
                       value={registerName}
                       onChange={(e) => setRegisterName(e.target.value)}
                       required
@@ -249,28 +202,45 @@ const Login = ({ onLogin }: LoginProps) => {
                     <Input
                       id="register-email"
                       type="email"
-                      placeholder="admin@hospital.com"
+                      placeholder="doctor@hospital.com"
                       value={registerEmail}
                       onChange={(e) => setRegisterEmail(e.target.value)}
                       required
                     />
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-2 relative">
                     <Label htmlFor="register-password">Password</Label>
                     <Input
                       id="register-password"
-                      type="password"
+                      type={showRegisterPassword ? "text" : "password"}
                       placeholder="••••••••"
                       value={registerPassword}
                       onChange={(e) => setRegisterPassword(e.target.value)}
                       required
                     />
+                    <button
+                      type="button"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                      onClick={() =>
+                        setShowRegisterPassword(!showRegisterPassword)
+                      }
+                    >
+                      {showRegisterPassword ? (
+                        <EyeOff size={20} />
+                      ) : (
+                        <Eye size={20} />
+                      )}
+                    </button>
                   </div>
                   {error && (
                     <p className="text-red-500 text-sm text-center">{error}</p>
                   )}
-                  <Button type="submit" disabled={loading}>
-                    {loading ? "Loading..." : "Register"}
+                  <Button
+                    type="submit"
+                    className="w-full bg-blue-600 hover:bg-blue-700"
+                    disabled={loading}
+                  >
+                    {loading ? "Loading..." : "Create Account"}
                   </Button>
                 </form>
               </TabsContent>
