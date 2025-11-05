@@ -1,44 +1,76 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Users, UserCog, Calendar, Bed, TrendingUp, Activity } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Users,
+  UserCog,
+  Calendar,
+  Bed,
+  TrendingUp,
+  Activity,
+} from "lucide-react";
 
 const Dashboard = () => {
   const stats = [
     {
-      title: 'Total Patients',
-      value: '1,234',
-      change: '+12%',
+      title: "Total Patients",
+      value: "1,234",
+      change: "+12%",
       icon: Users,
-      color: 'bg-blue-500',
+      color: "bg-blue-500",
     },
     {
-      title: 'Total Doctors',
-      value: '87',
-      change: '+3%',
+      title: "Total Doctors",
+      value: "87",
+      change: "+3%",
       icon: UserCog,
-      color: 'bg-green-500',
+      color: "bg-green-500",
     },
     {
-      title: 'Appointments',
-      value: '456',
-      change: '+8%',
+      title: "Appointments",
+      value: "456",
+      change: "+8%",
       icon: Calendar,
-      color: 'bg-purple-500',
+      color: "bg-purple-500",
     },
     {
-      title: 'Available Beds',
-      value: '42',
-      change: '-5%',
+      title: "Available Beds",
+      value: "42",
+      change: "-5%",
       icon: Bed,
-      color: 'bg-orange-500',
+      color: "bg-orange-500",
     },
   ];
 
   const recentActivities = [
-    { id: 1, patient: 'John Smith', action: 'Admitted to ICU', time: '10 mins ago' },
-    { id: 2, patient: 'Sarah Johnson', action: 'Appointment scheduled', time: '25 mins ago' },
-    { id: 3, patient: 'Mike Davis', action: 'Lab results ready', time: '1 hour ago' },
-    { id: 4, patient: 'Emily Brown', action: 'Discharged', time: '2 hours ago' },
-    { id: 5, patient: 'David Wilson', action: 'Surgery completed', time: '3 hours ago' },
+    {
+      id: 1,
+      patient: "John Smith",
+      action: "Admitted to ICU",
+      time: "10 mins ago",
+    },
+    {
+      id: 2,
+      patient: "Sarah Johnson",
+      action: "Appointment scheduled",
+      time: "25 mins ago",
+    },
+    {
+      id: 3,
+      patient: "Mike Davis",
+      action: "Lab results ready",
+      time: "1 hour ago",
+    },
+    {
+      id: 4,
+      patient: "Emily Brown",
+      action: "Discharged",
+      time: "2 hours ago",
+    },
+    {
+      id: 5,
+      patient: "David Wilson",
+      action: "Surgery completed",
+      time: "3 hours ago",
+    },
   ];
 
   return (
@@ -46,7 +78,9 @@ const Dashboard = () => {
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-        <p className="text-gray-600 mt-1">Welcome back! Here's what's happening today.</p>
+        <p className="text-gray-600 mt-1">
+          Welcome back! Here's what's happening today.
+        </p>
       </div>
 
       {/* Stats Grid */}
@@ -68,7 +102,9 @@ const Dashboard = () => {
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
+                <div className="text-2xl font-bold text-gray-900">
+                  {stat.value}
+                </div>
                 <p className="text-xs text-gray-600 flex items-center mt-1">
                   <TrendingUp className="h-3 w-3 mr-1 text-green-600" />
                   <span className="text-green-600">{stat.change}</span>
@@ -98,10 +134,14 @@ const Dashboard = () => {
                 >
                   <div className="w-2 h-2 bg-blue-600 rounded-full mt-2" />
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900">{activity.patient}</p>
+                    <p className="text-sm font-medium text-gray-900">
+                      {activity.patient}
+                    </p>
                     <p className="text-sm text-gray-600">{activity.action}</p>
                   </div>
-                  <span className="text-xs text-gray-500 whitespace-nowrap">{activity.time}</span>
+                  <span className="text-xs text-gray-500 whitespace-nowrap">
+                    {activity.time}
+                  </span>
                 </div>
               ))}
             </div>
@@ -119,19 +159,27 @@ const Dashboard = () => {
           <CardContent>
             <div className="space-y-4">
               <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
-                <span className="text-sm font-medium text-gray-700">New Admissions</span>
+                <span className="text-sm font-medium text-gray-700">
+                  New Admissions
+                </span>
                 <span className="text-lg font-bold text-blue-600">23</span>
               </div>
               <div className="flex justify-between items-center p-3 bg-green-50 rounded-lg">
-                <span className="text-sm font-medium text-gray-700">Discharges</span>
+                <span className="text-sm font-medium text-gray-700">
+                  Discharges
+                </span>
                 <span className="text-lg font-bold text-green-600">18</span>
               </div>
               <div className="flex justify-between items-center p-3 bg-purple-50 rounded-lg">
-                <span className="text-sm font-medium text-gray-700">Surgeries</span>
+                <span className="text-sm font-medium text-gray-700">
+                  Surgeries
+                </span>
                 <span className="text-lg font-bold text-purple-600">7</span>
               </div>
               <div className="flex justify-between items-center p-3 bg-orange-50 rounded-lg">
-                <span className="text-sm font-medium text-gray-700">Emergency Cases</span>
+                <span className="text-sm font-medium text-gray-700">
+                  Emergency Cases
+                </span>
                 <span className="text-lg font-bold text-orange-600">12</span>
               </div>
             </div>
