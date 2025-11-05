@@ -1,34 +1,32 @@
-##Shadcn-UI Template
-🚀 Technology Stack
+# Shadcn-UI Template
 
-This project is built with:
+## 🚀 Technology Stack
+This project is built with:  
 
-Vite
+- **Vite**  
+- **TypeScript**  
+- **React**  
+- **Shadcn-UI**  
+- **Tailwind CSS**  
 
-TypeScript
+> All **shadcn/ui components** are available under `@/components/ui`.
 
-React
+---
 
-Shadcn-UI
+## 📂 File Structure
+- **index.html** – HTML entry point  
+- **vite.config.ts** – Vite configuration file  
+- **tailwind.config.js** – Tailwind CSS configuration  
+- **package.json** – NPM dependencies and scripts  
+- **src/app.tsx** – Root component of the project  
+- **src/main.tsx** – Project entry point  
+- **src/index.css** – Global CSS configuration  
+- **src/pages/Index.tsx** – Home page logic  
 
-Tailwind CSS
+---
 
-All shadcn/ui components are available under @/components/ui.
+## 🧩 Components
+All **shadcn/ui components** are pre-downloaded and can be imported from:  
 
-📂 File Structure
-
-index.html – HTML entry point
-
-vite.config.ts – Vite configuration file
-
-tailwind.config.js – Tailwind CSS configuration
-
-package.json – NPM dependencies and scripts
-
-src/app.tsx – Root component of the project
-
-src/main.tsx – Project entry point
-
-src/index.css – Global CSS configuration
-
-src/pages/Index.tsx – Home page logic
+```ts
+import { Button, Card } from "@/components/ui";
