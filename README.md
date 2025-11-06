@@ -1,5 +1,5 @@
                         
- # Shadcn-UI Template 
+ # Shadcn-UI Template   
 
 ## 🚀 Technology Stack
 This project is built with:  
