@@ -130,6 +130,9 @@ const App = () => {
                   <Navigate to="/login" replace />
                 )
               }
+
+
+
             />
           </Routes>
         </BrowserRouter>
