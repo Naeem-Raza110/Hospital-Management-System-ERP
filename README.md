@@ -1,4 +1,4 @@
-                                                                           
+
  # Shadcn-UI Template   
 
 ## 🚀 Technology Stack
@@ -31,4 +31,3 @@ All **shadcn/ui components** are pre-downloaded and can be imported from:
 
 ```ts
 import { Button, Card } from "@/components/ui";
-                                                                                 
